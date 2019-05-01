@@ -1,0 +1,66 @@
+@extends('products.layout')
+@section('title')
+        Income Statement :: CPE#02
+@endsection
+  
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>เพิ่มรายการบันทึกใหม่</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('products.index') }}"> กลับหน้าหลัก </a>
+        </div>
+    </div>
+</div>
+   
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+   
+<form action="{{ route('products.store') }}" method="POST">
+    @csrf
+  
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>รายละเอียด</strong>
+		<textarea class="form-control" style="height:150px" name="detail" placeholder="เขียนรายการบันทึกที่นี่"></textarea>
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>ประเภท</strong>
+		<div class="form-group">
+			  <label for="sel1">Select list:</label>
+			  <select class="form-control" name="type">
+			  <option value="revenue">รายรับ</option>
+ 			  <option value="expenditure">รายจ่าย</option>
+  			
+</select>
+		</div>
+
+            </div>
+        </div>
+	 <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>จำนวนเงิน</strong>
+                <textarea class="form-control" style="height:150px" name="balance" placeholder="Detail"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+   
+</form>
+@endsection
